@@ -1,16 +1,45 @@
 import React, { useState } from "react";
-import { Route } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
+
+import Home from "./Home";
+import Posts from "./Posts";
+import Account from "./Account";
 
 const App = () => {
-    const [posts, setPosts] = useState([])
-    const [token, setToken] = useState('')
+    const [posts, setPosts] = useState([]);
+    const [featuredPost, setFeaturedPost] = useState('');
+    const [comments, setComments] = ([]);
+    const [newComments, setNewComments] = useState(false);
+    const [newPost, setNewPost] = useState(false);
+    const [user, setUser] = useState(false);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [token, setToken] = useState('');
 
     return <main>
-        <Route exact path='/'><div>hello</div></Route>
-        <Route path="/login"><div>login</div></Route>
-        <Route path="/register"><div>register</div></Route>
-        <Route path="/logout"><div>logout</div></Route>
-        <Route path="/posts"><div>posts</div></Route>
+        <nav>
+            <NavLink exact to="/" className="navlink" activeClassName="active">
+                Home
+            </NavLink>
+
+            <NavLink to="/posts" className="navlink" activeClassName="active">
+                Posts
+            </NavLink>
+
+            <NavLink to="/login" className="navlink" activeClassName="active">
+                Account
+            </NavLink>
+        </nav>
+
+        <Route exact path='/'>
+            <Home/>
+        </Route>
+        <Route path="/posts">
+            <Posts posts={posts} setPosts={setPosts} />
+        </Route>
+        <Route path="/login">
+            <Account/>
+        </Route>
     </main>
 }
 
