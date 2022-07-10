@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { apiCall, fetchPosts } from "../utils/api";
+import { fetchPosts } from "../utils/api";
 
 const Posts = ({posts, setPosts}) => {
     const [search, setSearch] = useState('');

@@ -1,5 +1,3 @@
-import { async } from "q";
-
 export const BASE_URL = 'https://strangers-things.herokuapp.com/api/2204-FTB-MT-WEB-PT'
 
 export const apiCall = async (url, method='GET', token, body) => {
@@ -30,19 +28,28 @@ export const apiCall = async (url, method='GET', token, body) => {
     }
 }
 
-
 export const fetchPosts = async () => {
     const data = await apiCall('/posts')
+    //console.log(data)
     if(!data || !data.data){
         return []
     }
     return data.data.posts || []
 }
 
-export const loginUser = async() => {
+export const loginUser = async(username, password) => {
+    const login = await apiCall('/users/login', "POST", null, {
+        user: {username, password}
+    })
+    console.log(login)
+    return login
 
 }
 
-export const registerUser = async() => {
-    
+export const registerUser = async(username, password) => {
+    const registration = await apiCall('/users/register', "POST", null, {
+        user: {username, password}
+    })
+    console.log(registration)
+    return registration
 }

@@ -12,8 +12,6 @@ const App = () => {
     const [newComments, setNewComments] = useState(false);
     const [newPost, setNewPost] = useState(false);
     const [user, setUser] = useState(false);
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
     const [token, setToken] = useState('');
 
     return <main>
@@ -38,7 +36,9 @@ const App = () => {
             <Posts posts={posts} setPosts={setPosts} />
         </Route>
         <Route path="/login">
-            <Account/>
+            <Account 
+            user={user} setUser={setUser}
+            token={token} setToken={setToken}/>
         </Route>
     </main>
 }

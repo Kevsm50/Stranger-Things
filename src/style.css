@@ -11,6 +11,7 @@ body{
 main{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 nav{
@@ -20,7 +21,7 @@ nav{
 
 .navlink{
     text-decoration: none;
-    margin-right: 2rem;
+    margin: 10px;
     color: blue; 
 }
 
@@ -31,13 +32,28 @@ nav{
 
 input{
     margin-left: 10px;
+    margin-bottom: 10px;
     text-align: center;
     width: 200px;
     height: 20px;
 }
 
+button{
+    width: 100px;
+    padding: 5px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
 .postInfo{
     background-color: rgb(196, 196, 244);
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 ul{
@@ -51,6 +67,12 @@ li{
 }
 
 h1{
+    margin-bottom: 10px;
     justify-content: center;
+    text-align: center;
+}
+
+p{
+    margin-bottom: 10px;
     text-align: center;
 }
