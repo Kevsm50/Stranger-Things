@@ -14,6 +14,11 @@ main{
     align-items: center;
 }
 
+span{
+    display: flex;
+    flex-direction: row;
+}
+
 nav{
     margin: 10px;
     display: flex;
@@ -30,7 +35,25 @@ nav{
     text-decoration: underline;
 }
 
-input{
+span h2{
+   margin: 10px;
+}
+
+.addPostInput{
+    margin: 10px;
+    text-align: center;
+    width: 200px;
+}
+
+.loginInput{
+    margin-left: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 200px;
+    height: 20px;
+}
+
+.searchInput{
     margin-left: 10px;
     margin-bottom: 10px;
     text-align: center;
@@ -47,7 +70,12 @@ button{
 }
 
 .postInfo{
+    cursor: pointer;
     background-color: rgb(196, 196, 244);
+}
+
+.postInfo:hover{
+    background-color: lightgray;
 }
 
 .form{
@@ -72,7 +100,30 @@ h1{
     text-align: center;
 }
 
-p{
+div p {
     margin-bottom: 10px;
     text-align: center;
+}
+
+div.featured-post{
+    position: fixed;
+    background-color: rgb(231, 241, 244);
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 1rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(5px 5px 10px #000);
+}
+
+.message-form{
+    display: flex;
+}
+
+.messages{
+    background-color: antiquewhite;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 20px;
 }

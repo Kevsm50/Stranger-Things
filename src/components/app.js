@@ -4,20 +4,21 @@ import { NavLink, Route } from "react-router-dom";
 import Home from "./Home";
 import Posts from "./Posts";
 import Account from "./Account";
+import FeaturedPost from "./FeaturedPost";
 
 const App = () => {
     const [posts, setPosts] = useState([]);
     const [featuredPost, setFeaturedPost] = useState('');
-    const [comments, setComments] = ([]);
-    const [newComments, setNewComments] = useState(false);
+    const [message, setMessage] = useState([]);
     const [newPost, setNewPost] = useState(false);
     const [user, setUser] = useState(false);
     const [token, setToken] = useState('');
+    const [userData, setUserData] = useState(false); 
 
     return <main>
         <nav>
             <NavLink exact to="/" className="navlink" activeClassName="active">
-                Home
+                Account
             </NavLink>
 
             <NavLink to="/posts" className="navlink" activeClassName="active">
@@ -25,20 +26,43 @@ const App = () => {
             </NavLink>
 
             <NavLink to="/login" className="navlink" activeClassName="active">
-                Account
+                Login
             </NavLink>
         </nav>
 
         <Route exact path='/'>
-            <Home/>
+            <Home 
+                user={user} 
+                token={token} 
+                userData={userData} setUserData={setUserData}
+            />
         </Route>
         <Route path="/posts">
-            <Posts posts={posts} setPosts={setPosts} />
+            <Route path="/posts/:postId">
+                {user && token && 
+                    <FeaturedPost 
+                        user={user}
+                        token={token}
+                        userData={userData}
+                        setUserData={setUserData}
+                        featuredPost={featuredPost}
+                        setFeaturedPost={setFeaturedPost}
+                    />
+                }
+            </Route>
+            <Posts
+                user={user} token={token} 
+                posts={posts} setPosts={setPosts} 
+                newPost={newPost} setNewPost={setNewPost}
+                featuredPost={featuredPost} setFeaturedPost={setFeaturedPost}
+            />
         </Route>
         <Route path="/login">
             <Account 
-            user={user} setUser={setUser}
-            token={token} setToken={setToken}/>
+                user={user} setUser={setUser}
+                userData={userData} setUserData={setUserData}
+                token={token} setToken={setToken}
+            />
         </Route>
     </main>
 }

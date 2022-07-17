@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import { loginUser, registerUser } from "../utils/api";
+import { loginUser, registerUser, fetchUser } from "../utils/api";
 
-const Account = ({user, setUser, token, setToken}) => {
+const Account = ({user, setUser, token, setToken, setUserData}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [isRegistering, setIsRegistering] = useState(false);
@@ -9,19 +9,20 @@ const Account = ({user, setUser, token, setToken}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(isRegistering){
-            const registration = await registerUser(username, password)
+            const registration = await registerUser(username, password);
             setUser(username);
             setToken(registration.data.token);
         } else{
-            const login = await loginUser(username, password)
-            console.log(login)
+            const login = await loginUser(username, password);
             setUser(username);
             setToken(login.data.token)
+
+            const data = await fetchUser(login.data.token);
+            setUserData(data.data)
         }
     }
 
     const toggleRegistration = () => {
-        console.log(isRegistering)
         setIsRegistering(!isRegistering)
     }
 
@@ -42,6 +43,7 @@ const Account = ({user, setUser, token, setToken}) => {
             <h1>{isRegistering ? "Registering" : "Login"}</h1>
             <form onSubmit={handleSubmit} className="form">
                 <input
+                    className="loginInput"
                     onChange={(event) => setUsername(event.target.value)}
                     required
                     name="username"
@@ -50,6 +52,7 @@ const Account = ({user, setUser, token, setToken}) => {
                     value={username}>
                 </input>
                 <input
+                    className="loginInput"
                     onChange={(event) => setPassword(event.target.value)}
                     required
                     name="password"

@@ -28,8 +28,8 @@ export const apiCall = async (url, method='GET', token, body) => {
     }
 }
 
-export const fetchPosts = async () => {
-    const data = await apiCall('/posts')
+export const fetchPosts = async (token) => {
+    const data = await apiCall('/posts', "GET", token)
     //console.log(data)
     if(!data || !data.data){
         return []
@@ -41,7 +41,6 @@ export const loginUser = async(username, password) => {
     const login = await apiCall('/users/login', "POST", null, {
         user: {username, password}
     })
-    console.log(login)
     return login
 
 }
@@ -50,6 +49,33 @@ export const registerUser = async(username, password) => {
     const registration = await apiCall('/users/register', "POST", null, {
         user: {username, password}
     })
-    console.log(registration)
     return registration
+}
+
+export const submitPost = async(token, title, description, price, location, willDeliver) => {
+    const data = await apiCall('/posts', "POST", token, {
+        post: {title, description, price, location, willDeliver}
+    })
+    return data.data.post
+}
+
+export const deletePost = async(token, postId) => {
+    const data = await apiCall(`/posts/${postId}`, "DELETE", token);
+    return data.success
+}
+
+export const submitMessage = async(token, postId, message) => {
+    const data = await apiCall(
+        `/posts/${postId}/messages`, 
+        "POST", 
+        token, 
+        {
+            message: {content: message}
+        })
+        return data.data.message
+}
+
+export const fetchUser = async(token) => {
+    const data = await apiCall(`/users/me`, "GET", token)
+    return data
 }
