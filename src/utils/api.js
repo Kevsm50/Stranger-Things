@@ -72,6 +72,7 @@ export const submitMessage = async(token, postId, message) => {
         {
             message: {content: message}
         })
+        console.log(data)
         return data.data.message
 }
 

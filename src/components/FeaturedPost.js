@@ -24,7 +24,7 @@ const FeaturedPost = ({
         const newArr = ([newMessage, ...featuredPost.messages]);
         const newPost = Object.assign(featuredPost, {messages: newArr});
         setFeaturedPost(newPost);
-        setContent('')
+        setContent('');
     }
 
     return <div className="featured-post">

@@ -9,7 +9,7 @@ const Home = ({ userData, user, token }) => {
             if (message.fromUser._id === userData._id) {
                 return (
                     <div className="messages" key={`${message._id} ${idx}` }>
-                        <div><b>Sender:</b>{message.fromUser.username}</div>
+                        <div><b>Title:</b>{message.post.title}</div>
                         <div><b>Messager:</b>{message.content}</div>
                     </div>
                 )
@@ -21,6 +21,7 @@ const Home = ({ userData, user, token }) => {
                 if (message.fromUser._id !== userData._id) {
                     return (
                         <div className="messages" key={index}>
+                            <div><b>Title:</b>{message.post.title}</div>
                             <div><b>Sender:</b>{message.fromUser.username}</div>
                             <div><b>Messager:</b>{message.content}</div>
                         </div>
